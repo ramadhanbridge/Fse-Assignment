@@ -12,24 +12,13 @@ class Db_queries{
   create_tables= async () =>
  {   
    try {
-    // DROP TABLE IF EXISTS users CASCADE;
+
      let conn = this.connection;
      await conn.connect()
      await conn.query(`     
      CREATE TABLE IF NOT EXISTS users ( id SERIAL, user_name TEXT NOT NULL, user_password TEXT NOT NULL, PRIMARY KEY (id));
+     CREATE TABLE IF NOT EXISTS messages ( id SERIAL, user_id INT,user_name TEXT NOT NULL, message_body TEXT NOT NULL,date NOW ,PRIMARY KEY (id));
     `);
-    // await conn.query(`INSERT INTO users(firstName,lastname,expertise,email,occupation,role,password,address,Bio) VALUES(
-    //       'admin',
-    //       'lastname',
-    //       'programmer',
-    //       '$admin@gmail.com',
-    //       'swimming',
-    //       'admin',
-    //       '${process.env.FAKE_PASS_WORD}',
-    //       'kigali',
-    //       'i like animals'
-    //     ) 
-    //   `);
     await conn.end();
 
    } catch(err) {
@@ -38,6 +27,7 @@ class Db_queries{
 
    }
   }
+
 
 }
 export default new Db_queries();
