@@ -1,4 +1,4 @@
-import  conn  from '../config/db'
+import  conn  from '../config/db.js'
 import { config } from 'dotenv';
 config();
 
@@ -15,11 +15,8 @@ class Db_queries{
     // DROP TABLE IF EXISTS users CASCADE;
      let conn = this.connection;
      await conn.connect()
-     await conn.query(`
-     DROP TABLE IF EXISTS users CASCADE;
-     
-     CREATE TABLE IF NOT EXISTS users ( id SERIAL, user_name TEXT NOT NULL, password TEXT NOT NULL, PRIMARY KEY (id));
-     
+     await conn.query(`     
+     CREATE TABLE IF NOT EXISTS users ( id SERIAL, user_name TEXT NOT NULL, user_password TEXT NOT NULL, PRIMARY KEY (id));
     `);
     // await conn.query(`INSERT INTO users(firstName,lastname,expertise,email,occupation,role,password,address,Bio) VALUES(
     //       'admin',

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import bodyParser from 'body-parser';
-import Auth_validate from '../middleware/Auth_middleware'
-import Auth from '../controllers/Auth_controller';
+import Auth_validate from '../middleware/Auth_middleware.js'
+import Auth from '../controllers/Auth_contoller.js';
 
 const router = Router();
 

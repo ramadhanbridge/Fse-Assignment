@@ -1,4 +1,4 @@
-import  conn  from '../config/db'
+import  conn  from '../config/db.js'
 
 class User_modal
 {
@@ -7,12 +7,12 @@ class User_modal
      }
 
 
-   verify_email = async ( email ) =>
+   verify_username = async ( user_name ) =>
   {   
     try{
      let conn = this.connection;
      await conn.connect()
-     const result = await conn.query(`SELECT * FROM users WHERE email = '${email}'`);
+     const result = await conn.query(`SELECT * FROM users WHERE user_name = '${user_name}'`);
      return result.rows[0];
     } catch (error)
     {
@@ -21,12 +21,13 @@ class User_modal
 
   } 
 
-  information = async ( email ) =>
+  information = async ( user_name ) =>
   {   
     try{
      let conn = this.connection;
      await conn.connect()
-     const result = await conn.query(`SELECT * FROM users WHERE email = '${email}'`);
+     const result = await conn.query(`SELECT * FROM users WHERE user_name = '${user_name}'`);
+     console.log(result.rows[0])
      return result.rows[0];
     } catch (error)
     {
@@ -42,9 +43,9 @@ class User_modal
   
      let conn = this.connection;
      await conn.connect()
-     const result = await conn.query(`INSERT INTO users(user_name,password) VALUES(
-      '${data.firstName}',
-      '${data.password}'
+     const result = await conn.query(`INSERT INTO users(user_name,user_password) VALUES(
+      '${data.user_name}',
+      '${data.user_password}'
           ) returning *;
   `);
 

@@ -1,5 +1,6 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
 import { config } from 'dotenv';
+const { Pool } = pkg;
 config();
 class Database{
 

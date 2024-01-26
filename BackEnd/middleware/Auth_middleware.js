@@ -1,15 +1,15 @@
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
-import db from "../models/user_modal";
-import message from "../helpers/message";
-import { loginValidation, signupValidation } from "../helpers/joi";
+import db from "../models/user_modal.js";
+import message from "../helpers/message.js";
+import { loginValidation, signupValidation } from "../helpers/joi.js";
 dotenv.config();
 class Auth_middleware {
   signup = async (req, res, next) => {
-    const user_email = await db.verify_email(req.body.email);
+    const user_email = await db.verify_username(req.body.username);
 
     if (user_email) {
-      return message.error(res, 409, "email already exist ");
+      return message.error(res, 409, "username already exist ");
     } else {
       const { error } = signupValidation(req.body);
 
@@ -25,7 +25,7 @@ class Auth_middleware {
     if (error) {
       return message.error(res, 400, error.details[0].message);
     }
-    const user_info = await db.information(req.body.email);
+    const user_info = await db.information(req.body.username);
     if (user_info == undefined) {
       return message.error(
         res,
@@ -35,7 +35,7 @@ class Auth_middleware {
     } else {
       const mypassword = await bcrypt.compare(
         req.body.password,
-        user_info.password
+        user_info.user_password
       );
       if (!mypassword) {
         return message.error(res, 401, "wrong password,....");
