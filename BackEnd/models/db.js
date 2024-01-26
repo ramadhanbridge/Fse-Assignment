@@ -19,8 +19,7 @@ class Db_queries{
      DROP TABLE IF EXISTS users CASCADE;
      
      CREATE TABLE IF NOT EXISTS users ( id SERIAL, user_name TEXT NOT NULL, password TEXT NOT NULL, PRIMARY KEY (id));
-
-     CREATE TABLE IF NOT EXISTS sessions ( session_id SERIAL, user_id INTEGER  references users(id), user_name  TEXT NOT NULL,PRIMARY KEY (session_id));
+     
     `);
     // await conn.query(`INSERT INTO users(firstName,lastname,expertise,email,occupation,role,password,address,Bio) VALUES(
     //       'admin',
