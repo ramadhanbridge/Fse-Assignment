@@ -12,6 +12,9 @@ body{
     place-content: center;
     position: relative;
 }
+body.chat-body{
+    display: flex;
+}
 .container{
 width: 400px;
 position: relative;
