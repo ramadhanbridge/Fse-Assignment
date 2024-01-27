@@ -4,10 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
-    <script src="../js/index.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <h1>Project init</h1>
+    <div class="container">
+        <div class="header">FSE Chat room</div>
+        <div class="form">
+            <form>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <div class="action_button">
+                    <input type="button" value="Login"  onclick="login()">
+                    <input type="button" value="Register" class="active" onclick="register()">
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        const login = () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (!username || !password) {
+                alert('Please enter username and password');
+                return;
+            }
+            console.log(username, password);
+
+            const url = 'http://localhost:3000/api/v1/auth/signin';
+            const data = {
+                username,
+                password
+            }
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }).then(res => {
+                console.log(res);
+                return res.json();})
+            .then(data => {
+                if (data.status === 200) {
+                    localStorage.setItem('user_data', JSON.stringify(data));
+                    window.location.href = 'chatroom.html';
+                } else {
+                    if(data.error){
+                        alert(data.error);
+                    }
+                    else if(data.message){
+                        alert(data.message);
+                    }
+                    else{
+                        alert('Login failed');
+                    }
+                }
+            }).catch(err => console.log(err))
+        }
+        const register = () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === '' || password === '') {
+                alert('Please enter username and password');
+                return;
+            }
+            console.log(username, password);
+            const url = 'http://localhost:3000/api/v1/auth/signup';
+            const data = {
+                username,
+                password
+            }
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }).then(res => res.json())
+            .then(data => {
+                if (data.status === 201) {
+                    alert('Register success');
+                    localStorage.setItem('user_data', json.stringify(data));
+                } else {
+                    if(data.error){
+                        alert(data.error);
+                    }
+                    else if(data.message){
+                        alert(data.message);
+                    }
+                    else{
+                        alert('Register failed');
+                    }
+                }
+            })
+            .catch(err => console.log(err))
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  type="text/css" rel="stylesheet" href="../css/index.css">
+    <script>
+        // scroll to bottom on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            // scroll after some milliseconds to let the page load
+            setTimeout(function() {
+                window.scrollTo(0, document.body.scrollHeight);
+            }, 100);
+        });
+
+        // redirect to / if no user data in local storage
+        if (!localStorage.getItem('user_data')) {
+            window.location.href = '/';
+        }
+
+        // logout function
+
+        const logout = () => {
+            localStorage.removeItem('user_data');
+            window.location.href = '/';
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="navBar">
+            <div class="title">FSE Chat room</div>
+            <div class="logout">
+                <button id="logout-button" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        <div class="message-container">
+            <ul id="oldmessages">
+
+            </ul>
+             <ul id="newmessages">
+        
+            </ul>
+           
+        </div>
+        <div class="post-message-container">
+            <textarea placeholder="Type ....!" id="post-input"></textarea>
+            <button id="post-button">Post</button>
+        </div>
+       
+        
+    </div>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    <script src="../js/index.js"></script>
+</body>
+</html>

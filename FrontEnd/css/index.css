@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    width: 100%;
+    padding-bottom: 200px;display: grid;
+    place-content: center;
+    position: relative;
+}
+.container{
+width: 400px;
+position: relative;
+padding-top: 90px;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    text-align: center;
+    padding-bottom: 40px;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+input{
+    width: 100%;
+    height: 52px;
+    margin: 10px 0;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+.action_button{
+    display: flex;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+}
+.action_button>input{
+    color: #2a2a2a;
+    transition: all 0.3s ease;
+    font-weight: 550 !important;
+    text-transform: uppercase;
+    background-color: lightblue;
+}
+.action_button>input.active{
+    transition: all 0.3s ease;
+    font-weight: 550 !important;
+    text-transform: uppercase;
+    background-color: white;
+    border-color: lightblue;
+}
+.message-container{
+    width: 100%;
+}
+
+ul{
+    list-style: none;
+    position: relative;
+    width: 100%;
+}
+ul>li{
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #cccccc49;
+    min-height: 100px;
+    color: #2a2a2a;
+    transition: all 0.3s ease;
+}
+.post-message-container{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+}
+
+textarea{
+    resize: none;
+    height: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 8px;
+}
+
+textarea:focus{
+    border:1px solid rgb(185, 185, 6);
+}
+.post-message-container>button{
+    width: 100%;
+    height: 52px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: lightblue;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    background:rgb(218, 218, 13);
+    color: black;
+    cursor: pointer;
+}
+.post-message-container>button:hover{
+    opacity: 0.8; 
+}
+
+li:hover{
+    background-color: #cccccc;
+    cursor: pointer;
+}
+
+li>.info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+li>.info>.time{
+    font-size: 10px;
+    font-weight: 500;
+    color: #2a2a2a;
+    display: flex;
+    gap: 5px;
+}
+
+li>.info>.user{
+    font-size: 16px;
+    font-weight: 700;
+    color: #2a2a2a;
+    display: flex;
+    gap: 5px;
+}
+li>.message{
+    font-size: 14px;
+    font-weight: 500;
+    color: #2a2a2a;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 500px){
+    .container{
+        width: 100%;
+        min-width: 350px;
+    }
+    .post-message-container{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0px;
+        background-color: white;
+        left: 0px;
+        right: 0px;
+        margin: 0 auto;
+    }
+    
+    
+}
+
+.container>.navBar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background: lightblue;
+    z-index: 1;
+    height: 80px;
+    left: 0px;
+    align-items: center;
+}
+.container>.navBar>.title{
+    font-size: 25px;
+    font-weight: 700;
+    color: #2a2a2a;
+    display: flex;
+    gap: 5px;
+    text-transform: uppercase;
+}
+
+.container>.navBar>.logout>button{
+    width: 100%;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid black;
+    outline: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    background-color: lightblue;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    background:rgb(218, 218, 13);
+    color: black;
+    cursor: pointer;
+}
+
+

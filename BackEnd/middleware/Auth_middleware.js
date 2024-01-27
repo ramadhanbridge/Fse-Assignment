@@ -6,9 +6,9 @@ import { loginValidation, signupValidation } from "../helpers/joi.js";
 dotenv.config();
 class Auth_middleware {
   signup = async (req, res, next) => {
-    const user_email = await db.verify_username(req.body.username);
+    const user_name = await db.verify_username(req.body.username);
 
-    if (user_email) {
+    if (user_name) {
       return message.error(res, 409, "username already exist ");
     } else {
       const { error } = signupValidation(req.body);

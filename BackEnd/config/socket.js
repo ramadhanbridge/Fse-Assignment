@@ -16,10 +16,10 @@ export default (io) => {
     // Listen for new messages from the connected client
     socket.on('new message', async (message) => {
       // Add the new message to the database
-      await message_modal.add_message(message);
+      const returnedMessage = await message_modal.add_message(message);
 
       // Broadcast the new message to all connected clients
-      io.emit('new message', message);
+      io.emit('new message', returnedMessage);
     });
 
     // Handle disconnection
