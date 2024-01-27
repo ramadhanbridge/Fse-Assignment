@@ -16,8 +16,19 @@ class Db_queries{
      let conn = this.connection;
      await conn.connect()
      await conn.query(`     
-     CREATE TABLE IF NOT EXISTS users ( id SERIAL, user_name TEXT NOT NULL, user_password TEXT NOT NULL, PRIMARY KEY (id));
-     CREATE TABLE IF NOT EXISTS messages ( id SERIAL, user_id INT,user_name TEXT NOT NULL, message_body TEXT NOT NULL,date NOW ,PRIMARY KEY (id));
+     CREATE TABLE IF NOT EXISTS users (
+       id SERIAL PRIMARY KEY, 
+       user_name TEXT NOT NULL, 
+       user_password TEXT NOT NULL);
+     CREATE TABLE IF NOT EXISTS messages (
+      id SERIAL PRIMARY KEY,
+      user_id INT,
+      user_name TEXT NOT NULL,
+      message_body TEXT NOT NULL,
+      date DATE DEFAULT current_date,
+      time TIME DEFAULT current_time
+    );
+    
     `);
     await conn.end();
 
